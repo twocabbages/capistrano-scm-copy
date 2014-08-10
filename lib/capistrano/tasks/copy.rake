@@ -6,7 +6,7 @@ namespace :copy do
 
   desc "Archive files to #{archive_name}"
   file archive_name => FileList[include_dir].exclude(archive_name) do |t|
-    sh "tar -cvz" + (exclude_dir.empty? ? "" : " --exclude #{exclude_dir}") + " -f #{t.name} #{t.prerequisites.join(" ")}"
+    sh "tar -cvz" + (exclude_dir.empty? ? "" : " --exclude=#{exclude_dir}") + " -f #{t.name} #{t.prerequisites.join(" ")}"
   end
 
   desc "Deploy #{archive_name} to release_path"
